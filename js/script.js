@@ -5,14 +5,21 @@ const gameOverSound=new Audio('./music/gameover.mp3')
 const moveSound=new Audio('./music/move.mp3')
 const musicSound=new Audio('./music/music.mp3');
 const board=document.getElementById('board');
-// const scor=document.getElementById('score');
+var musicChoice=false;
 let speed=8;
 let lastPaintTime=0;
 let snakeArr=[
     {x:3,y:5}
 ]
+
 let food={x:13,y:15};
 let score=0;
+
+//music choice
+document.getElementById("btn").addEventListener("click",()=>{
+    musicChoice=!musicChoice;
+});
+
 //Game Functions
 function main(ctime)
 {
@@ -25,6 +32,7 @@ function main(ctime)
     gameEngine();
 
     // console.log(ctime)
+    
 }
 
 function isCollide(snake)
@@ -46,22 +54,48 @@ function isCollide(snake)
 
 function gameEngine()
 {
+    if(musicChoice)
+    {
+        document.getElementById("btn").innerText="Music: ON";
+    }
+    else
+    {
+        document.getElementById("btn").innerText="Music: OFF";
+    }
+    if(musicChoice)
+    {
+        musicSound.play();
+    }
+    else
+    {
+        musicSound.pause();
+        musicSound.currentTime=0;
+    }
     //Part 1: Updating  the snake array
     if(isCollide(snakeArr))
     {
-        gameOverSound.play();
-        musicSound.pause();
+        if(musicChoice)
+        {
+            gameOverSound.play();
+            musicSound.pause();
+        }
         inputDir={x:0,y:0};
         alert("Game Over. Press any Key to press again!");
         snakeArr=[{x:13,y:15}];
+       if(musicChoice)
+       {
         musicSound.play();
+       }
         score=0;
         scoreBox.innerHTML=`Score: ${score}`;
     }
     //If You have eaten the food increment and regenerate the food.
     if(snakeArr[0].y===food.y && snakeArr[0].x===food.x)
     {
-        foodSound.play();
+        if(musicChoice)
+        {
+            foodSound.play();
+        }
         score+=1;
         if(score>highscore)
         {
@@ -112,7 +146,6 @@ function gameEngine()
 }
 
 //Main Logic Starts Here
-musicSound.play();
 let highscore=localStorage.getItem('highscore')
 if(highscore)
 {
@@ -126,25 +159,25 @@ else
 window.requestAnimationFrame(main);
 window.addEventListener('keydown',e=>{
     inputDir={x:0,y:1}; //Start the game
-    moveSound.play();
+    // moveSound.play();
     switch (e.key) {
         case 'ArrowUp':
-            console.log('arrowup');
+            // console.log('arrowup');
             inputDir.x=0;
             inputDir.y=-1;
             break;
         case 'ArrowDown':
-            console.log('arrowDown');
+            // console.log('arrowDown');
             inputDir.x=0;
             inputDir.y=1;
             break;
         case 'ArrowLeft':
-            console.log('arrowLeft');
+            // console.log('arrowLeft');
             inputDir.x=-1;
             inputDir.y=0;
             break;
         case 'ArrowRight':
-            console.log('arrowRight');
+            // console.log('arrowRight');
             inputDir.x=1;
             inputDir.y=0;
             break;

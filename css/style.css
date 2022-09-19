@@ -3,6 +3,7 @@
     padding: 0px;
     box-sizing: border-box;
 }
+
 .body{
     background:url('../images/bg.jpg');
     background-repeat: no-repeat;
@@ -16,16 +17,25 @@
 #scoreBox{
     position: absolute;
     top:9px;
-    right: 200px;
+    right: 180px;
     font-size: 39px;
     font-weight: 500;
 }
+
 #highScoreBox{
     position: absolute;
     top:60px;
-    right:160px;
+    right:140px;
     font-size: 39px;
     font-weight: 500;
+}
+#btn{
+    position: absolute;
+    top:100px;
+    right:140px;
+    font-size: 39px;
+    font-weight: 500;
+    cursor: pointer;
 }
 
 #board{
@@ -37,18 +47,20 @@
     grid-template-columns:repeat(18,1fr);
     grid-template-rows: repeat(18,1fr); 
 }
+
 .head{
     background:linear-gradient(red,yellow);
     border:2px solid purple;
     transform: scale(1.02);
     
 }
+
 .food{
     background-color: rgb(7, 7, 7);
     border-radius: 8px;
     border:.25vmin solid rgb(8, 8, 8);
-
 }
+
 .snake{
     background-color: purple;
     border:.25vmin solid white;

@@ -13,6 +13,14 @@
     justify-content: center;
     align-items: center;
 }
+#controls{
+    position: absolute;
+    top:2px;
+    left:0px;
+    color:rgb(40, 17, 172);
+    font-size: 30px;
+    font-weight: bolder;
+}
 
 #scoreBox{
     position: absolute;
@@ -65,4 +73,10 @@
     background-color: purple;
     border:.25vmin solid white;
     border-radius: 12px;
+}
+@media screen and (max-width:600px)
+{
+    #btn,#highScoreBox,#scoreBox,#controls{
+        font-size: 18px;
+    }
 }
